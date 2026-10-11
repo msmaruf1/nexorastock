@@ -1,29 +1,641 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NexoraStock - Creative Assets</title>
-  <meta name="description" content="Discover creative vectors, illustrations, photos and design templates on NexoraStock.">
+
+  <title>NexoraStock | Creative Design Marketplace</title>
+
+  <meta name="description" content="Discover professional brochures, flyers, vector graphics, creative templates and print-ready design resources at NexoraStock.">
+
   <style>
+    :root {
+      --primary: #4f46e5;
+      --secondary: #8b5cf6;
+      --dark: #111827;
+      --text: #4b5563;
+      --light: #f8fafc;
+      --border: #e5e7eb;
+      --white: #ffffff;
+      --radius: 18px;
+      --shadow: 0 12px 35px rgba(31, 41, 55, 0.08);
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      color: #172033;
-      background: #f7f8fc;
-      line-height: 1.6;
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
     }
 
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 38px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.2;
+      margin: 12px 0;
+      letter-spacing: -1px;
+    }
+
+    .section-title p {
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: #eef2ff;
+      color: var(--primary);
+      padding: 6px 13px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #3730a3;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: white;
+      color: var(--dark);
+      border-color: var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* HEADER */
+
     header {
-      background: #ffffff;
-      border-bottom: 1px solid #e8eaf0;
-      padding: 18px 6%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.97);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .navbar {
+      min-height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 5px 11px;
+      font-size: 23px;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 85px 0;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 85% 20%, #ede9fe, transparent 35%),
+        linear-gradient(135deg, #ffffff, #f8faff);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 62px);
+      line-height: 1.12;
+      letter-spacing: -2px;
+      margin: 20px 0;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #4f46e5, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 510px;
+      color: var(--text);
+      margin-bottom: 25px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-note {
+      margin-top: 20px;
+      font-size: 12px;
+    }
+
+    .artwork {
+      position: relative;
+      min-height: 390px;
+      padding: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+    }
+
+    .artwork::before {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      right: -70px;
+      top: -80px;
+      border-radius: 50%;
+      background: #c4b5fd;
+    }
+
+    .artwork::after {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      bottom: -80px;
+      left: -40px;
+      border-radius: 50%;
+      background: #93c5fd;
+    }
+
+    .artwork-card {
+      position: relative;
+      z-index: 1;
+      width: 85%;
+      padding: 28px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 25px 60px rgba(49, 46, 129, 0.15);
+      transform: rotate(-3deg);
+    }
+
+    .artwork-card small {
+      color: var(--primary);
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .artwork-card h2 {
+      font-size: 31px;
+      line-height: 1.2;
+      margin: 15px 0;
+    }
+
+    .artwork-card p {
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .color-blocks {
+      display: flex;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .color-blocks span {
+      height: 65px;
+      flex: 1;
+      border-radius: 10px;
+    }
+
+    .color-blocks span:nth-child(1) {
+      background: linear-gradient(135deg, #4f46e5, #a78bfa);
+    }
+
+    .color-blocks span:nth-child(2) {
+      background: linear-gradient(135deg, #0ea5e9, #67e8f9);
+    }
+
+    .color-blocks span:nth-child(3) {
+      background: linear-gradient(135deg, #f59e0b, #fda4af);
+    }
+
+    /* FEATURE STRIP */
+
+    .feature-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 22px 0;
+    }
+
+    .feature-items {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px 45px;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* SEARCH */
+
+    .search-box {
+      display: flex;
+      gap: 10px;
+      max-width: 560px;
+      margin: 0 auto 35px;
+    }
+
+    .search-box input {
+      flex: 1;
+      min-width: 0;
+      padding: 13px 15px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px #eef2ff;
+    }
+
+    .search-status {
+      text-align: center;
+      color: var(--text);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    /* PORTFOLIO */
+
+    .design-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .design-card {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: white;
+      transition: 0.25s;
+    }
+
+    .design-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .design-preview {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .preview-one {
+      background: #e0e7ff;
+    }
+
+    .preview-two {
+      background: #dbeafe;
+    }
+
+    .preview-three {
+      background: #fce7f3;
+    }
+
+    .preview-four {
+      background: #dcfce7;
+    }
+
+    .mini-design {
+      width: 78%;
+      min-height: 145px;
+      padding: 17px;
+      background: white;
+      box-shadow: 0 10px 25px #00000012;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .mini-design small {
+      color: var(--primary);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .mini-design strong {
+      font-size: 19px;
+      line-height: 1.2;
+      margin: 8px 0;
+    }
+
+    .mini-design p {
+      font-size: 10px;
+      color: var(--text);
+    }
+
+    .mini-colors {
+      display: flex;
+      gap: 5px;
+      margin-top: 12px;
+    }
+
+    .mini-colors span {
+      flex: 1;
+      height: 22px;
+      border-radius: 3px;
+      background: #a5b4fc;
+    }
+
+    .mini-colors span:nth-child(2) {
+      background: #60a5fa;
+    }
+
+    .mini-colors span:nth-child(3) {
+      background: #f9a8d4;
+    }
+
+    .design-info {
+      padding: 17px;
+    }
+
+    .design-info h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .design-info p {
+      color: var(--text);
+      font-size: 12px;
+      margin-bottom: 15px;
+    }
+
+    .card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .file-tag {
+      color: var(--primary);
+      background: #eef2ff;
+      padding: 5px 8px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .card-bottom button {
+      padding: 8px 11px;
+      font-size: 12px;
+    }
+
+    .no-results {
+      display: none;
+      text-align: center;
+      color: var(--text);
+      padding: 25px;
+    }
+
+    /* SERVICES */
+
+    #services {
+      background: var(--light);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      padding: 25px 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: white;
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 17px;
+      border-radius: 13px;
+      background: #eef2ff;
+      font-size: 23px;
+    }
+
+    .service-card h3 {
+      font-size: 16px;
+      margin-bottom: 9px;
+    }
+
+    .service-card p {
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    /* ABOUT */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .about-visual {
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+      text-align: center;
+    }
+
+    .about-visual .logo {
+      font-size: 36px;
+    }
+
+    .about-visual p {
+      color: var(--text);
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    .about-copy h2 {
+      font-size: 36px;
+      line-height: 1.2;
+      margin: 15px 0;
+    }
+
+    .about-copy p {
+      color: var(--text);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .about-list {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .about-list li {
+      margin: 9px 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .about-list li::before {
+      content: "✓";
+      color: var(--primary);
+      font-weight: 900;
+      margin-right: 10px;
+    }
+
+    /* CONTACT */
+
+    #contact {
+      background: #f8faff;
+    }
+
+    .contact-box {
+      max-width: 780px;
+      margin: auto;
+      padding: 48px 25px;
+      text-align: center;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+    }
+
+    .contact-box h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.2;
+      margin: 15px 0;
+    }
+
+    .contact-box p {
+      color: var(--text);
+      margin-bottom: 25px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-content {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -31,518 +643,794 @@
       flex-wrap: wrap;
     }
 
-    .logo {
-      font-size: 27px;
-      font-weight: 800;
-      color: #2457e6;
-      letter-spacing: -1px;
+    .footer-content p {
+      color: var(--text);
+      font-size: 12px;
     }
 
-    nav {
+    .footer-links {
       display: flex;
-      align-items: center;
-      gap: 22px;
       flex-wrap: wrap;
+      gap: 18px;
+      color: var(--text);
+      font-size: 12px;
     }
 
-    nav a {
-      color: #46516a;
-      text-decoration: none;
+    /* DESIGN DETAILS DIALOG */
+
+    dialog {
+      width: min(460px, 92%);
+      margin: auto;
+      padding: 28px;
+      border: 0;
+      border-radius: 18px;
+      box-shadow: 0 20px 70px #00000033;
+    }
+
+    dialog::backdrop {
+      background: #11182799;
+    }
+
+    dialog h3 {
+      font-size: 23px;
+      margin-bottom: 12px;
+    }
+
+    dialog p {
+      color: var(--text);
       font-size: 14px;
-    }
-
-    nav a:hover {
-      color: #2457e6;
-    }
-
-    .join {
-      background: #2457e6;
-      color: white;
-      padding: 10px 18px;
-      border-radius: 9px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .hero {
-      padding: 85px 20px 65px;
-      text-align: center;
-      background: linear-gradient(135deg, #edf3ff, #f5efff);
-    }
-
-    .tag {
-      display: inline-block;
-      padding: 6px 13px;
-      border-radius: 20px;
-      background: white;
-      color: #2457e6;
-      font-size: 13px;
-      font-weight: bold;
       margin-bottom: 18px;
     }
 
-    h1 {
-      font-size: clamp(34px, 5vw, 58px);
-      line-height: 1.15;
-      max-width: 850px;
-      margin: 0 auto 20px;
-      letter-spacing: -1.5px;
-    }
-
-    .hero p {
-      color: #647089;
-      max-width: 650px;
-      margin: 0 auto 30px;
-      font-size: 17px;
-    }
-
-    .search {
+    .dialog-actions {
       display: flex;
-      max-width: 680px;
-      margin: 0 auto;
-      background: white;
-      padding: 7px;
-      border: 1px solid #e2e6ef;
-      border-radius: 12px;
-      box-shadow: 0 10px 35px #23345c12;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
-    .search input {
-      flex: 1;
-      min-width: 0;
-      padding: 13px;
-      border: none;
-      outline: none;
-      font-size: 15px;
-      background: transparent;
-    }
+    /* RESPONSIVE DESIGN */
 
-    button {
-      border: none;
-      background: #2457e6;
-      color: white;
-      padding: 13px 24px;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+    @media (max-width: 900px) {
+      .nav-links {
+        gap: 13px;
+      }
 
-    .popular {
-      margin-top: 20px;
-      color: #6b7488;
-      font-size: 13px;
-    }
+      .navbar > .btn {
+        display: none;
+      }
 
-    .popular a {
-      display: inline-block;
-      color: #485571;
-      background: #ffffffc9;
-      text-decoration: none;
-      padding: 5px 10px;
-      border-radius: 15px;
-      margin: 4px;
-    }
+      .hero-grid {
+        gap: 30px;
+      }
 
-    main {
-      max-width: 1200px;
-      margin: auto;
-      padding: 50px 22px;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 24px;
-    }
-
-    h2 {
-      font-size: 27px;
-      letter-spacing: -0.5px;
-    }
-
-    .section-head a {
-      color: #2457e6;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .category {
-      background: white;
-      padding: 25px 18px;
-      border: 1px solid #e9ecf3;
-      border-radius: 14px;
-      transition: transform .2s, box-shadow .2s;
-    }
-
-    .category:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px #17203310;
-    }
-
-    .category .symbol {
-      width: 52px;
-      height: 52px;
-      display: grid;
-      place-items: center;
-      border-radius: 13px;
-      font-size: 25px;
-      margin-bottom: 15px;
-      background: #edf2ff;
-    }
-
-    .category h3 {
-      font-size: 17px;
-      margin-bottom: 5px;
-    }
-
-    .category p {
-      color: #788196;
-      font-size: 13px;
-    }
-
-    .assets {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .asset {
-      background: white;
-      border: 1px solid #e9ecf3;
-      border-radius: 14px;
-      overflow: hidden;
-    }
-
-    .preview {
-      min-height: 175px;
-      display: grid;
-      place-items: center;
-      padding: 20px;
-      font-size: 44px;
-      background: #e8efff;
-    }
-
-    .preview.purple { background: #f0e8ff; }
-    .preview.green { background: #e2f7ee; }
-    .preview.orange { background: #fff0df; }
-
-    .asset-info {
-      padding: 15px;
-    }
-
-    .asset-info h3 {
-      font-size: 15px;
-      margin-bottom: 7px;
-    }
-
-    .asset-info p {
-      font-size: 12px;
-      color: #788196;
-    }
-
-    .free {
-      display: inline-block;
-      color: #087c53;
-      background: #e1f7ec;
-      padding: 3px 8px;
-      border-radius: 5px;
-      font-size: 11px;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    .premium {
-      color: #865700;
-      background: #fff0cf;
-    }
-
-    .notice {
-      margin-top: 28px;
-      padding: 20px;
-      background: #edf2ff;
-      border-radius: 12px;
-      color: #46516a;
-      font-size: 14px;
-    }
-
-    footer {
-      background: #111b32;
-      color: #c7d0e3;
-      padding: 35px 20px;
-      text-align: center;
-      font-size: 13px;
-    }
-
-    footer strong {
-      color: white;
-      font-size: 20px;
-    }
-
-    footer p {
-      margin-top: 8px;
-    }
-
-    @media (max-width: 800px) {
-      .categories, .assets {
+      .design-grid,
+      .service-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      header {
-        padding: 16px 5%;
-      }
-
-      nav {
-        gap: 12px;
-      }
-
-      .hero {
-        padding-top: 60px;
+      .about-grid {
+        gap: 30px;
       }
     }
 
-    @media (max-width: 480px) {
-      .categories, .assets {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
+    @media (max-width: 650px) {
+      .navbar {
+        min-height: 68px;
       }
 
-      .category {
-        padding: 16px 12px;
+      .logo {
+        font-size: 22px;
       }
 
-      .preview {
-        min-height: 120px;
+      .menu-toggle {
+        display: block;
       }
 
-      nav a {
-        font-size: 12px;
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        padding: 15px 4%;
+        background: white;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
       }
 
-      .search button {
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 10px 0;
+      }
+
+      .hero {
+        padding: 55px 0;
+      }
+
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .artwork {
+        min-height: 320px;
+      }
+
+      .artwork-card {
+        width: 95%;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .design-grid {
+        gap: 12px;
+      }
+
+      .design-preview {
+        height: 145px;
+        padding: 10px;
+      }
+
+      .mini-design {
+        width: 95%;
+        min-height: 110px;
+        padding: 10px;
+      }
+
+      .mini-design strong {
+        font-size: 15px;
+      }
+
+      .design-info {
         padding: 12px;
       }
 
-      h2 {
-        font-size: 22px;
+      .design-info h3 {
+        font-size: 13px;
+      }
+
+      .card-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .service-grid {
+        gap: 12px;
+      }
+
+      .service-card {
+        padding: 17px 13px;
+      }
+
+      .about-copy h2 {
+        font-size: 30px;
+      }
+
+      .search-box {
+        flex-direction: column;
+      }
+
+      .search-box .btn {
+        width: 100%;
+      }
+
+      .footer-content {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
       }
     }
   </style>
 </head>
+
 <body>
 
+  <!-- HEADER -->
   <header>
-    <div class="logo">NexoraStock</div>
+    <div class="container navbar">
 
-    <nav>
-      <a href="#categories">Categories</a>
-      <a href="#vectors">Vectors</a>
-      <a href="#free">Free Downloads</a>
-      <a href="#premium">Premium</a>
-      <a href="#about">About</a>
-      <a class="join" href="#join">Join Free</a>
-    </nav>
+      <a href="#home" class="logo">
+        Nexora<span>Stock</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="navLinks">
+        ☰
+      </button>
+
+      <nav aria-label="Main navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="#portfolio" class="btn btn-primary">
+        Explore Designs →
+      </a>
+
+    </div>
   </header>
 
-  <section class="hero">
-    <span class="tag">YOUR CREATIVE WORLD</span>
-
-    <h1>Creative assets for every idea.</h1>
-
-    <p>
-      Discover creative resources for your next project.
-      Explore vectors, illustrations, photos and design templates
-      in one place.
-    </p>
-
-    <form class="search" id="searchForm">
-      <input
-        type="search"
-        id="searchInput"
-        placeholder="Search vectors, templates, illustrations..."
-        aria-label="Search creative assets"
-      >
-      <button type="submit">Search</button>
-    </form>
-
-    <div class="popular">
-      Popular:
-      <a href="#vectors">Business</a>
-      <a href="#vectors">Technology</a>
-      <a href="#categories">Social Media</a>
-      <a href="#free">Backgrounds</a>
-    </div>
-  </section>
-
   <main>
-    <section id="categories">
-      <div class="section-head">
-        <h2>Explore Categories</h2>
-        <a href="#vectors">Explore all →</a>
-      </div>
 
-      <div class="categories">
-        <article class="category">
-          <div class="symbol">✳️</div>
-          <h3>Vectors</h3>
-          <p>Scalable creative graphics</p>
-        </article>
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
 
-        <article class="category">
-          <div class="symbol">🎨</div>
-          <h3>Illustrations</h3>
-          <p>Artwork for your ideas</p>
-        </article>
+        <div>
+          <span class="eyebrow">WELCOME TO NEXORASTOCK</span>
 
-        <article class="category">
-          <div class="symbol">📷</div>
-          <h3>Photos</h3>
-          <p>Photography for projects</p>
-        </article>
+          <h1>
+            Creative Assets.<br>
+            Ready for Your<br>
+            <span class="gradient-text">Next Idea.</span>
+          </h1>
 
-        <article class="category">
-          <div class="symbol">🗂️</div>
-          <h3>Templates</h3>
-          <p>Ready-made design layouts</p>
-        </article>
-      </div>
-    </section>
+          <p>
+            Discover professional design resources, modern templates
+            and creative inspiration for your next project.
+          </p>
 
-    <section id="vectors" style="margin-top:55px;">
-      <div class="section-head">
-        <h2>Fresh Creative Picks</h2>
-        <a href="#free">View all →</a>
-      </div>
+          <div class="hero-buttons">
+            <a href="#portfolio" class="btn btn-primary">
+              Browse Designs →
+            </a>
 
-      <div class="assets" id="assetGrid">
-        <article class="asset" data-search="business growth vector chart">
-          <div class="preview">📈</div>
-          <div class="asset-info">
-            <h3>Business Growth Concept</h3>
-            <p>Vector • Business</p>
-            <span class="free">SAMPLE</span>
+            <a href="#services" class="btn btn-outline">
+              View Services
+            </a>
           </div>
-        </article>
 
-        <article class="asset" data-search="abstract gradient background illustration">
-          <div class="preview purple">💠</div>
-          <div class="asset-info">
-            <h3>Abstract Design Concept</h3>
-            <p>Illustration • Abstract</p>
-            <span class="free">SAMPLE</span>
+          <p class="hero-note">
+            Creative resources for designers, creators and businesses.
+          </p>
+        </div>
+
+        <div class="artwork">
+          <div class="artwork-card">
+            <small>CREATIVE COLLECTION</small>
+
+            <h2>Design Your<br>Next Big Idea.</h2>
+
+            <p>
+              Professional layouts for modern brands and creators.
+            </p>
+
+            <div class="color-blocks">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
-        </article>
+        </div>
 
-        <article class="asset" data-search="nature green eco leaf vector">
-          <div class="preview green">🌿</div>
-          <div class="asset-info">
-            <h3>Nature & Eco Concept</h3>
-            <p>Vector • Nature</p>
-            <span class="free">SAMPLE</span>
+      </div>
+    </section>
+
+    <!-- FEATURE STRIP -->
+    <div class="feature-strip">
+      <div class="container feature-items">
+        <span>✓ Modern Design Resources</span>
+        <span>✓ Creative Inspiration</span>
+        <span>✓ Professional Design Services</span>
+        <span>✓ Print-Ready Design Support</span>
+      </div>
+    </div>
+
+    <!-- PORTFOLIO -->
+    <section class="section" id="portfolio">
+      <div class="container">
+
+        <div class="section-title">
+          <span class="eyebrow">OUR PORTFOLIO</span>
+
+          <h2>Explore Featured Designs</h2>
+
+          <p>
+            Explore design categories and discover creative ideas
+            for your next project.
+          </p>
+        </div>
+
+        <div class="search-box">
+          <input
+            type="search"
+            id="designSearch"
+            placeholder="Search brochures, flyers, vectors..."
+            aria-label="Search designs">
+
+          <button class="btn btn-primary" id="searchButton">
+            Search
+          </button>
+        </div>
+
+        <p class="search-status" id="searchStatus" aria-live="polite">
+          Explore our sample design collection.
+        </p>
+
+        <div class="design-grid" id="designGrid">
+
+          <!-- DESIGN 1 -->
+          <article
+            class="design-card"
+            data-search="corporate brochure business company profile">
+
+            <div class="design-preview preview-one">
+              <div class="mini-design">
+                <small>CORPORATE DESIGN</small>
+                <strong>Business<br>Profile</strong>
+                <p>Professional company presentation</p>
+
+                <div class="mini-colors">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="design-info">
+              <h3>Corporate Brochure</h3>
+
+              <p>Professional business design concept.</p>
+
+              <div class="card-bottom">
+                <span class="file-tag">BROCHURE</span>
+
+                <button
+                  class="btn btn-outline preview-button"
+                  data-title="Corporate Brochure"
+                  data-description="A sample corporate brochure concept. Upload your actual brochure file to offer it for download.">
+                  View Details
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- DESIGN 2 -->
+          <article
+            class="design-card"
+            data-search="social media instagram facebook post template">
+
+            <div class="design-preview preview-two">
+              <div class="mini-design">
+                <small>SOCIAL MEDIA</small>
+                <strong>Make Your<br>Brand Stand Out</strong>
+                <p>Creative social media layout</p>
+
+                <div class="mini-colors">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="design-info">
+              <h3>Social Media Kit</h3>
+
+              <p>Modern layouts for social platforms.</p>
+
+              <div class="card-bottom">
+                <span class="file-tag">TEMPLATE</span>
+
+                <button
+                  class="btn btn-outline preview-button"
+                  data-title="Social Media Kit"
+                  data-description="A sample social media template concept. Replace it with your own finished design files.">
+                  View Details
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- DESIGN 3 -->
+          <article
+            class="design-card"
+            data-search="modern poster flyer promotional print design">
+
+            <div class="design-preview preview-three">
+              <div class="mini-design">
+                <small>CREATIVE POSTER</small>
+                <strong>Ideas Into<br>Reality</strong>
+                <p>Modern promotional design</p>
+
+                <div class="mini-colors">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="design-info">
+              <h3>Modern Poster</h3>
+
+              <p>Eye-catching promotional layout.</p>
+
+              <div class="card-bottom">
+                <span class="file-tag">POSTER</span>
+
+                <button
+                  class="btn btn-outline preview-button"
+                  data-title="Modern Poster"
+                  data-description="A sample poster design concept. Add your own print-ready poster file when it is ready.">
+                  View Details
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- DESIGN 4 -->
+          <article
+            class="design-card"
+            data-search="vector graphics svg eps illustrator illustration">
+
+            <div class="design-preview preview-four">
+              <div class="mini-design">
+                <small>VECTOR COLLECTION</small>
+                <strong>Creative<br>Shapes</strong>
+                <p>Abstract vector design concept</p>
+
+                <div class="mini-colors">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="design-info">
+              <h3>Vector Graphics</h3>
+
+              <p>Creative vector resource concept.</p>
+
+              <div class="card-bottom">
+                <span class="file-tag">VECTOR</span>
+
+                <button
+                  class="btn btn-outline preview-button"
+                  data-title="Vector Graphics"
+                  data-description="A sample vector collection concept. Upload your actual AI, EPS or SVG files to offer downloadable resources.">
+                  View Details
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <p class="no-results" id="noResults">
+          No matching designs found. Try another search.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="container">
+
+        <div class="section-title">
+          <span class="eyebrow">WHAT I OFFER</span>
+
+          <h2>Professional Design Services</h2>
+
+          <p>
+            Creative design solutions for businesses, brands
+            and individuals.
+          </p>
+        </div>
+
+        <div class="service-grid">
+
+          <article class="service-card">
+            <div class="service-icon">📄</div>
+
+            <h3>Brochure Design</h3>
+
+            <p>
+              Professional bi-fold, tri-fold and corporate brochure
+              design for businesses.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">🎨</div>
+
+            <h3>Flyer & Poster</h3>
+
+            <p>
+              Promotional flyers, event posters and advertising
+              layouts for your brand.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">✒️</div>
+
+            <h3>Vector Design</h3>
+
+            <p>
+              Scalable vector graphics and clean artwork using
+              professional design tools.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">📦</div>
+
+            <h3>Print-Ready Files</h3>
+
+            <p>
+              Print-ready layouts prepared for professional
+              printing requirements.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container about-grid">
+
+        <div class="about-visual">
+          <div>
+            <div class="logo">
+              Nexora<span>Stock</span>
+            </div>
+
+            <p>
+              Creative resources. Professional design.
+              Endless possibilities.
+            </p>
           </div>
-        </article>
+        </div>
 
-        <article class="asset" data-search="creative orange marketing template">
-          <div class="preview orange">✏️</div>
-          <div class="asset-info">
-            <h3>Creative Marketing Concept</h3>
-            <p>Template • Marketing</p>
-            <span class="free premium">PREVIEW ONLY</span>
-          </div>
-        </article>
-      </div>
+        <div class="about-copy">
+          <span class="eyebrow">ABOUT NEXORASTOCK</span>
 
-      <p id="searchMessage" style="margin-top:18px;color:#647089;"></p>
-    </section>
+          <h2>Creativity Meets Professional Design</h2>
 
-    <section id="free" style="margin-top:45px;">
-      <div class="section-head">
-        <h2>Free Downloads</h2>
-      </div>
-      <div class="notice">
-        Free downloads will be available here when real design files are added.
-        These sample cards are for the website preview only; they do not contain
-        downloadable design files yet.
-      </div>
-    </section>
+          <p>
+            NexoraStock is a creative design project focused on
+            design resources, visual inspiration and professional
+            graphic design services.
+          </p>
 
-    <section id="premium" style="margin-top:35px;">
-      <div class="section-head">
-        <h2>Premium Collection</h2>
-      </div>
-      <div class="notice">
-        Premium assets and secure payments can be added in a future version.
-        No purchases or payments are active on this demo website.
-      </div>
-    </section>
+          <p>
+            The goal is to help businesses, creators and designers
+            discover useful design ideas and high-quality creative
+            resources.
+          </p>
 
-    <section id="join" style="margin-top:35px;">
-      <div class="section-head">
-        <h2>Join Our Creative Community</h2>
-      </div>
-      <div class="notice">
-        Contributor registration and design uploads are planned for a future
-        version. This section is currently informational only.
+          <ul class="about-list">
+            <li>Modern and clean design concepts</li>
+            <li>Brochures, flyers and company profiles</li>
+            <li>Vector graphics and print-ready layouts</li>
+            <li>Creative solutions for businesses</li>
+          </ul>
+
+          <a href="#portfolio" class="btn btn-primary">
+            Explore Portfolio →
+          </a>
+        </div>
+
       </div>
     </section>
 
-    <section id="about" style="margin-top:35px;">
-      <div class="section-head">
-        <h2>About NexoraStock</h2>
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container">
+
+        <div class="contact-box">
+          <span class="eyebrow">LET'S CONNECT</span>
+
+          <h2>Have a Design Project in Mind?</h2>
+
+          <p>
+            Get in touch to discuss brochure design, flyers,
+            company profiles, vector graphics or other design needs.
+          </p>
+
+          <!-- Replace the email address below with your real email. -->
+          <a
+            class="btn btn-primary"
+            href="mailto:YOUR_EMAIL@example.com?subject=NexoraStock%20Design%20Inquiry">
+            Contact Me →
+          </a>
+        </div>
+
       </div>
-      <p style="color:#647089;">
-        NexoraStock is a creative marketplace concept for discovering design
-        resources. We aim to make creative assets easier to explore and use.
-      </p>
     </section>
+
   </main>
 
+  <!-- FOOTER -->
   <footer>
-    <strong>NexoraStock</strong>
-    <p>Creative assets for every idea.</p>
-    <p>© 2026 NexoraStock. Website prototype.</p>
+    <div class="container footer-content">
+
+      <a href="#home" class="logo">
+        Nexora<span>Stock</span>
+      </a>
+
+      <p>
+        © <span id="currentYear"></span> NexoraStock.
+        All rights reserved.
+      </p>
+
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+    </div>
   </footer>
 
+  <!-- DESIGN DETAILS POPUP -->
+  <dialog id="designDialog">
+
+    <h3 id="dialogTitle">Design Details</h3>
+
+    <p id="dialogDescription"></p>
+
+    <p>
+      This is a sample portfolio preview, not an actual
+      downloadable design file.
+    </p>
+
+    <div class="dialog-actions">
+      <a href="#contact" class="btn btn-primary" id="dialogContact">
+        Contact Me
+      </a>
+
+      <button class="btn btn-outline" id="closeDialog">
+        Close
+      </button>
+    </div>
+
+  </dialog>
+
   <script>
-    const searchForm = document.getElementById("searchForm");
-    const searchInput = document.getElementById("searchInput");
-    const assetCards = document.querySelectorAll(".asset");
-    const searchMessage = document.getElementById("searchMessage");
+    // MOBILE NAVIGATION
 
-    searchForm.addEventListener("submit", function(event) {
-      event.preventDefault();
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
 
+    menuToggle.addEventListener("click", function () {
+      const isOpen = navLinks.classList.toggle("open");
+
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    // SEARCH DESIGNS
+
+    const searchInput = document.getElementById("designSearch");
+    const searchButton = document.getElementById("searchButton");
+    const searchStatus = document.getElementById("searchStatus");
+    const noResults = document.getElementById("noResults");
+
+    const designCards = Array.from(
+      document.querySelectorAll(".design-card")
+    );
+
+    function searchDesigns() {
       const query = searchInput.value.trim().toLowerCase();
-      let matches = 0;
+      let visibleCount = 0;
 
-      assetCards.forEach(function(card) {
+      designCards.forEach(function (card) {
         const searchableText =
           (card.innerText + " " + card.dataset.search).toLowerCase();
 
-        const found = query === "" || searchableText.includes(query);
+        const matches = searchableText.includes(query);
 
-        card.style.display = found ? "" : "none";
+        card.style.display = matches ? "" : "none";
 
-        if (found) matches++;
+        if (matches) {
+          visibleCount++;
+        }
       });
 
-      searchMessage.textContent = query === ""
-        ? "Showing all sample items."
-        : matches + " sample item(s) found. Real asset search is not connected yet.";
+      if (query === "") {
+        searchStatus.textContent =
+          "Explore our sample design collection.";
+      } else {
+        searchStatus.textContent =
+          visibleCount + " matching design(s) found.";
+      }
 
-      document.getElementById("vectors").scrollIntoView({
-        behavior: "smooth"
+      noResults.style.display =
+        visibleCount === 0 ? "block" : "none";
+    }
+
+    searchButton.addEventListener("click", searchDesigns);
+
+    searchInput.addEventListener("input", searchDesigns);
+
+    searchInput.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        searchDesigns();
+      }
+    });
+
+    // DESIGN DETAILS POPUP
+
+    const designDialog = document.getElementById("designDialog");
+    const dialogTitle = document.getElementById("dialogTitle");
+    const dialogDescription =
+      document.getElementById("dialogDescription");
+
+    document.querySelectorAll(".preview-button").forEach(function (button) {
+      button.addEventListener("click", function () {
+        dialogTitle.textContent = button.dataset.title;
+        dialogDescription.textContent = button.dataset.description;
+
+        designDialog.showModal();
       });
     });
+
+    document.getElementById("closeDialog").addEventListener(
+      "click",
+      function () {
+        designDialog.close();
+      }
+    );
+
+    document.getElementById("dialogContact").addEventListener(
+      "click",
+      function () {
+        designDialog.close();
+      }
+    );
+
+    // FOOTER YEAR
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
   </script>
 
 </body>
