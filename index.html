@@ -1,0 +1,549 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexoraStock - Creative Assets</title>
+  <meta name="description" content="Discover creative vectors, illustrations, photos and design templates on NexoraStock.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #172033;
+      background: #f7f8fc;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e8eaf0;
+      padding: 18px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      color: #2457e6;
+      letter-spacing: -1px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #46516a;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #2457e6;
+    }
+
+    .join {
+      background: #2457e6;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 9px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .hero {
+      padding: 85px 20px 65px;
+      text-align: center;
+      background: linear-gradient(135deg, #edf3ff, #f5efff);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 13px;
+      border-radius: 20px;
+      background: white;
+      color: #2457e6;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.15;
+      max-width: 850px;
+      margin: 0 auto 20px;
+      letter-spacing: -1.5px;
+    }
+
+    .hero p {
+      color: #647089;
+      max-width: 650px;
+      margin: 0 auto 30px;
+      font-size: 17px;
+    }
+
+    .search {
+      display: flex;
+      max-width: 680px;
+      margin: 0 auto;
+      background: white;
+      padding: 7px;
+      border: 1px solid #e2e6ef;
+      border-radius: 12px;
+      box-shadow: 0 10px 35px #23345c12;
+    }
+
+    .search input {
+      flex: 1;
+      min-width: 0;
+      padding: 13px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      background: transparent;
+    }
+
+    button {
+      border: none;
+      background: #2457e6;
+      color: white;
+      padding: 13px 24px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .popular {
+      margin-top: 20px;
+      color: #6b7488;
+      font-size: 13px;
+    }
+
+    .popular a {
+      display: inline-block;
+      color: #485571;
+      background: #ffffffc9;
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 15px;
+      margin: 4px;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 50px 22px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 27px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-head a {
+      color: #2457e6;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .category {
+      background: white;
+      padding: 25px 18px;
+      border: 1px solid #e9ecf3;
+      border-radius: 14px;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .category:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px #17203310;
+    }
+
+    .category .symbol {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      font-size: 25px;
+      margin-bottom: 15px;
+      background: #edf2ff;
+    }
+
+    .category h3 {
+      font-size: 17px;
+      margin-bottom: 5px;
+    }
+
+    .category p {
+      color: #788196;
+      font-size: 13px;
+    }
+
+    .assets {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .asset {
+      background: white;
+      border: 1px solid #e9ecf3;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .preview {
+      min-height: 175px;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      font-size: 44px;
+      background: #e8efff;
+    }
+
+    .preview.purple { background: #f0e8ff; }
+    .preview.green { background: #e2f7ee; }
+    .preview.orange { background: #fff0df; }
+
+    .asset-info {
+      padding: 15px;
+    }
+
+    .asset-info h3 {
+      font-size: 15px;
+      margin-bottom: 7px;
+    }
+
+    .asset-info p {
+      font-size: 12px;
+      color: #788196;
+    }
+
+    .free {
+      display: inline-block;
+      color: #087c53;
+      background: #e1f7ec;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .premium {
+      color: #865700;
+      background: #fff0cf;
+    }
+
+    .notice {
+      margin-top: 28px;
+      padding: 20px;
+      background: #edf2ff;
+      border-radius: 12px;
+      color: #46516a;
+      font-size: 14px;
+    }
+
+    footer {
+      background: #111b32;
+      color: #c7d0e3;
+      padding: 35px 20px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: white;
+      font-size: 20px;
+    }
+
+    footer p {
+      margin-top: 8px;
+    }
+
+    @media (max-width: 800px) {
+      .categories, .assets {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      header {
+        padding: 16px 5%;
+      }
+
+      nav {
+        gap: 12px;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .categories, .assets {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .category {
+        padding: 16px 12px;
+      }
+
+      .preview {
+        min-height: 120px;
+      }
+
+      nav a {
+        font-size: 12px;
+      }
+
+      .search button {
+        padding: 12px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">NexoraStock</div>
+
+    <nav>
+      <a href="#categories">Categories</a>
+      <a href="#vectors">Vectors</a>
+      <a href="#free">Free Downloads</a>
+      <a href="#premium">Premium</a>
+      <a href="#about">About</a>
+      <a class="join" href="#join">Join Free</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <span class="tag">YOUR CREATIVE WORLD</span>
+
+    <h1>Creative assets for every idea.</h1>
+
+    <p>
+      Discover creative resources for your next project.
+      Explore vectors, illustrations, photos and design templates
+      in one place.
+    </p>
+
+    <form class="search" id="searchForm">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Search vectors, templates, illustrations..."
+        aria-label="Search creative assets"
+      >
+      <button type="submit">Search</button>
+    </form>
+
+    <div class="popular">
+      Popular:
+      <a href="#vectors">Business</a>
+      <a href="#vectors">Technology</a>
+      <a href="#categories">Social Media</a>
+      <a href="#free">Backgrounds</a>
+    </div>
+  </section>
+
+  <main>
+    <section id="categories">
+      <div class="section-head">
+        <h2>Explore Categories</h2>
+        <a href="#vectors">Explore all →</a>
+      </div>
+
+      <div class="categories">
+        <article class="category">
+          <div class="symbol">✳️</div>
+          <h3>Vectors</h3>
+          <p>Scalable creative graphics</p>
+        </article>
+
+        <article class="category">
+          <div class="symbol">🎨</div>
+          <h3>Illustrations</h3>
+          <p>Artwork for your ideas</p>
+        </article>
+
+        <article class="category">
+          <div class="symbol">📷</div>
+          <h3>Photos</h3>
+          <p>Photography for projects</p>
+        </article>
+
+        <article class="category">
+          <div class="symbol">🗂️</div>
+          <h3>Templates</h3>
+          <p>Ready-made design layouts</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="vectors" style="margin-top:55px;">
+      <div class="section-head">
+        <h2>Fresh Creative Picks</h2>
+        <a href="#free">View all →</a>
+      </div>
+
+      <div class="assets" id="assetGrid">
+        <article class="asset" data-search="business growth vector chart">
+          <div class="preview">📈</div>
+          <div class="asset-info">
+            <h3>Business Growth Concept</h3>
+            <p>Vector • Business</p>
+            <span class="free">SAMPLE</span>
+          </div>
+        </article>
+
+        <article class="asset" data-search="abstract gradient background illustration">
+          <div class="preview purple">💠</div>
+          <div class="asset-info">
+            <h3>Abstract Design Concept</h3>
+            <p>Illustration • Abstract</p>
+            <span class="free">SAMPLE</span>
+          </div>
+        </article>
+
+        <article class="asset" data-search="nature green eco leaf vector">
+          <div class="preview green">🌿</div>
+          <div class="asset-info">
+            <h3>Nature & Eco Concept</h3>
+            <p>Vector • Nature</p>
+            <span class="free">SAMPLE</span>
+          </div>
+        </article>
+
+        <article class="asset" data-search="creative orange marketing template">
+          <div class="preview orange">✏️</div>
+          <div class="asset-info">
+            <h3>Creative Marketing Concept</h3>
+            <p>Template • Marketing</p>
+            <span class="free premium">PREVIEW ONLY</span>
+          </div>
+        </article>
+      </div>
+
+      <p id="searchMessage" style="margin-top:18px;color:#647089;"></p>
+    </section>
+
+    <section id="free" style="margin-top:45px;">
+      <div class="section-head">
+        <h2>Free Downloads</h2>
+      </div>
+      <div class="notice">
+        Free downloads will be available here when real design files are added.
+        These sample cards are for the website preview only; they do not contain
+        downloadable design files yet.
+      </div>
+    </section>
+
+    <section id="premium" style="margin-top:35px;">
+      <div class="section-head">
+        <h2>Premium Collection</h2>
+      </div>
+      <div class="notice">
+        Premium assets and secure payments can be added in a future version.
+        No purchases or payments are active on this demo website.
+      </div>
+    </section>
+
+    <section id="join" style="margin-top:35px;">
+      <div class="section-head">
+        <h2>Join Our Creative Community</h2>
+      </div>
+      <div class="notice">
+        Contributor registration and design uploads are planned for a future
+        version. This section is currently informational only.
+      </div>
+    </section>
+
+    <section id="about" style="margin-top:35px;">
+      <div class="section-head">
+        <h2>About NexoraStock</h2>
+      </div>
+      <p style="color:#647089;">
+        NexoraStock is a creative marketplace concept for discovering design
+        resources. We aim to make creative assets easier to explore and use.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <strong>NexoraStock</strong>
+    <p>Creative assets for every idea.</p>
+    <p>© 2026 NexoraStock. Website prototype.</p>
+  </footer>
+
+  <script>
+    const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("searchInput");
+    const assetCards = document.querySelectorAll(".asset");
+    const searchMessage = document.getElementById("searchMessage");
+
+    searchForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const query = searchInput.value.trim().toLowerCase();
+      let matches = 0;
+
+      assetCards.forEach(function(card) {
+        const searchableText =
+          (card.innerText + " " + card.dataset.search).toLowerCase();
+
+        const found = query === "" || searchableText.includes(query);
+
+        card.style.display = found ? "" : "none";
+
+        if (found) matches++;
+      });
+
+      searchMessage.textContent = query === ""
+        ? "Showing all sample items."
+        : matches + " sample item(s) found. Real asset search is not connected yet.";
+
+      document.getElementById("vectors").scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+  </script>
+
+</body>
+</html>
