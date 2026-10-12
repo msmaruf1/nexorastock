@@ -981,12 +981,7 @@
 
         <div class="design-grid" id="designGrid">
 
-          <!-- DESIGN 1 -->
-          <article
-            class="design-card"
-            data-search="corporate brochure business company profile">
-
-            
+          <!-- DESIGN 1 -->   
 <article
   class="design-card"
   data-search="corporate brochure business company profile">
@@ -1448,5 +1443,276 @@
       : "Client not initialized"
   );
 </script><!-- NexoraStock Supabase Integration -->
+
+<!-- NexoraStock Admin Panel -->
+<section id="admin-panel" class="section" style="background:#f8faff">
+  <div class="container" style="max-width:650px">
+    <div class="section-title">
+      <span class="eyebrow">ADMIN AREA</span>
+      <h2>Manage Design Uploads</h2>
+      <p>Sign in with your authorized administrator account.</p>
+    </div>
+
+    <form id="admin-login-form" style="display:grid;gap:12px">
+      <label for="admin-email">Admin email</label>
+      <input id="admin-email" type="email" autocomplete="username"
+        required placeholder="Your admin email"
+        style="padding:12px;border:1px solid #e5e7eb;border-radius:10px">
+
+      <label for="admin-password">Password</label>
+      <input id="admin-password" type="password"
+        autocomplete="current-password" required
+        placeholder="Your password"
+        style="padding:12px;border:1px solid #e5e7eb;border-radius:10px">
+
+      <button class="btn btn-primary" type="submit">Admin Login</button>
+      <p id="admin-message" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+<!-- End NexoraStock Admin Panel -->
+ 
+<script>
+(() => {
+  const ADMIN_UID = "3aed124d-08ec-4e81-b39f-23077bfc2103";
+  const MAX_SIZE = 50 * 1024 * 1024;
+  const client = supabaseClient;
+
+  const loginForm = document.getElementById("admin-login-form");
+  const message = document.getElementById("admin-message");
+  const panel = document.getElementById("admin-panel");
+
+  if (!loginForm || !message || !panel) return;
+
+  panel.insertAdjacentHTML("beforeend", `
+    <div id="admin-tools" hidden
+      style="max-width:650px;margin:25px auto;padding:22px;background:white;border:1px solid #ddd;border-radius:12px">
+      <h3>Upload a New Design</h3>
+      <form id="design-upload-form" style="display:grid;gap:12px">
+        <label>Design title
+          <input name="title" required maxlength="150">
+        </label>
+        <label>Description
+          <textarea name="description" rows="3"></textarea>
+        </label>
+        <label>Category
+          <input name="category" value="General" required maxlength="80">
+        </label>
+        <label>Preview image (JPG/PNG)
+          <input name="preview" type="file" accept=".jpg,.jpeg,.png" required>
+        </label>
+        <label>Original file (AI/EPS/SVG/ZIP)
+          <input name="original" type="file" accept=".ai,.eps,.svg,.zip" required>
+        </label>
+        <button class="btn btn-primary" type="submit">Upload Design</button>
+        <button id="admin-logout" type="button" class="btn">Log Out</button>
+        <p id="upload-message" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+    <div class="container" style="margin:30px auto">
+      <h3>Latest Designs</h3>
+      <div id="database-design-grid"
+        style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
+      </div>
+    </div>
+  `);
+
+  const tools = document.getElementById("admin-tools");
+  const uploadForm = document.getElementById("design-upload-form");
+  const uploadMessage = document.getElementById("upload-message");
+  const grid = document.getElementById("database-design-grid");
+
+  function showMessage(text, error = false) {
+    message.textContent = text;
+    message.style.color = error ? "#b91c1c" : "#166534";
+  }
+
+  function showAdmin(isAdmin) {
+    tools.hidden = !isAdmin;
+    loginForm.hidden = isAdmin;
+  }
+
+  async function loadDesigns() {
+    const { data, error } = await client
+      .from("designs")
+      .select("id,title,description,category,preview_url")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Gallery error:", error.message);
+      return;
+    }
+
+    grid.replaceChildren();
+
+    for (const design of data || []) {
+      const card = document.createElement("article");
+      card.style.cssText =
+        "border:1px solid #ddd;border-radius:12px;overflow:hidden;padding-bottom:12px";
+
+      const img = document.createElement("img");
+      img.src = design.preview_url;
+      img.alt = design.title;
+      img.loading = "lazy";
+      img.style.cssText = "width:100%;height:210px;object-fit:cover";
+
+      const title = document.createElement("h3");
+      title.textContent = design.title;
+      title.style.padding = "0 12px";
+
+      const category = document.createElement("p");
+      category.textContent = design.category || "General";
+      category.style.padding = "0 12px";
+
+      const description = document.createElement("p");
+      description.textContent = design.description || "";
+      description.style.padding = "0 12px";
+
+      card.append(img, title, category, description);
+      grid.append(card);
+    }
+  }
+
+  loginForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    showMessage("Signing in...");
+
+    const email = document.getElementById("admin-email").value.trim();
+    const password = document.getElementById("admin-password").value;
+
+    const { data, error } = await client.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    document.getElementById("admin-password").value = "";
+
+    if (error) {
+      showMessage("Login failed: " + error.message, true);
+      return;
+    }
+
+    if (data.user?.id !== ADMIN_UID) {
+      await client.auth.signOut();
+      showAdmin(false);
+      showMessage("This account is not authorized as Admin.", true);
+      return;
+    }
+
+    showAdmin(true);
+    showMessage("Admin login successful.");
+  });
+
+  uploadForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    uploadMessage.textContent = "Checking login...";
+
+    const { data: sessionData, error: sessionError } =
+      await client.auth.getSession();
+
+    const user = sessionData.session?.user;
+
+    if (sessionError || !user || user.id !== ADMIN_UID) {
+      uploadMessage.textContent = "Please sign in with your Admin account.";
+      return;
+    }
+
+    const title = uploadForm.elements.title.value.trim();
+    const description = uploadForm.elements.description.value.trim();
+    const category = uploadForm.elements.category.value.trim();
+    const preview = uploadForm.elements.preview.files[0];
+    const original = uploadForm.elements.original.files[0];
+
+    if (!title || !category || !preview || !original) {
+      uploadMessage.textContent = "Please fill all required fields.";
+      return;
+    }
+
+    if (preview.size > MAX_SIZE || original.size > MAX_SIZE) {
+      uploadMessage.textContent = "Each file must be 50 MB or smaller.";
+      return;
+    }
+
+    const previewExt = preview.name.split(".").pop().toLowerCase();
+    const originalExt = original.name.split(".").pop().toLowerCase();
+
+    if (!["jpg", "jpeg", "png"].includes(previewExt) ||
+        !["ai", "eps", "svg", "zip"].includes(originalExt)) {
+      uploadMessage.textContent = "Unsupported file type.";
+      return;
+    }
+
+    const id = crypto.randomUUID();
+    const previewPath = id + "." + previewExt;
+    const originalPath = id + "." + originalExt;
+
+    uploadMessage.textContent = "Uploading preview...";
+
+    const { error: previewError } = await client.storage
+      .from("design-files")
+      .upload(previewPath, preview);
+
+    if (previewError) {
+      uploadMessage.textContent = "Preview upload failed: " + previewError.message;
+      return;
+    }
+
+    const { data: publicData } = client.storage
+      .from("design-files")
+      .getPublicUrl(previewPath);
+
+    uploadMessage.textContent = "Uploading private original...";
+
+    const { error: originalError } = await client.storage
+      .from("paid-files")
+      .upload(originalPath, original);
+
+    if (originalError) {
+      uploadMessage.textContent = "Original upload failed: " + originalError.message;
+      return;
+    }
+
+    uploadMessage.textContent = "Saving to database...";
+
+    const { error: dbError } = await client.from("designs").insert({
+      title,
+      description,
+      category,
+      preview_url: publicData.publicUrl,
+      file_url: originalPath
+    });
+
+    if (dbError) {
+      uploadMessage.textContent = "Database save failed: " + dbError.message;
+      return;
+    }
+
+    uploadForm.reset();
+    uploadForm.elements.category.value = "General";
+    uploadMessage.textContent = "Upload successful!";
+    await loadDesigns();
+  });
+
+  document.getElementById("admin-logout").addEventListener("click", async () => {
+    await client.auth.signOut();
+    showAdmin(false);
+    showMessage("Logged out.");
+  });
+
+  async function restoreSession() {
+    const { data, error } = await client.auth.getSession();
+
+    if (!error && data.session?.user?.id === ADMIN_UID) {
+      showAdmin(true);
+      showMessage("Admin session restored.");
+    } else {
+      showAdmin(false);
+    }
+  }
+
+  loadDesigns();
+  restoreSession();
+})();
+</script>
 </body>
 </html>
